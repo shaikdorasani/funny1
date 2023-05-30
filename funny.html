@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    button{
+        text-align:center;
+        background-color: rgb(61, 46, 218);
+        color: aliceblue;
+    
+        
+    }
+    #button{
+        cursor: pointer;
+    }
+    #joke,#jokecontent{
+        padding: 20px;
+        font-size: 20px;
+    }
+    body{
+        text-align: center;
+        background-color: blanchedalmond;
+    }
+
+</style>
+</head>
+<body>
+
+    <h1>Wanna hear something Funny?</h1>
+    <button id="button">YES!</button>
+    <div id="jokecontent"></div> 
+    <div id="joke"></div>
+    <img src="t2.jpg" alt="image"width=" 400px"heigth=" 400px">
+       <p id="footer">code your own joke generator ❤️</p>
+       <script src="joke.js"></script>
+       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>
+<script>
+    const button=document.getElementById("button");
+const joke=document.getElementById("joke");
+const jokecontent=document.getElementById("jokecontent");
+button.onclick=() =>{
+    axios.get("https://official-joke-api.appspot.com/random_joke")
+    .then(function(response){
+      button.textContent="Next";
+      jokecontent.textContent=response.data.setup;
+      joke.textContent="";
+      setTimeout(function(){
+      joke.textContent=response.data.punchline;
+    },5000);
+})
+.catch(function(error){
+    console.log("error");
+});}
+</script>
+  
